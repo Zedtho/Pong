@@ -23,6 +23,8 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Paddle.h"
+#include "Ball.h"
 
 class Game
 {
@@ -40,7 +42,6 @@ private:
 	void DrawWall(int XCoordinate, int YCoordinate);
 	void DrawThePixelatedWall();
 	void DrawScoreboard();
-	int WallInsideBorder(int YCoordinate);
 	void PongBallPhysics();
 	void DoBounceCalculation();
 	void Swap(int& x, int& y);
@@ -54,22 +55,14 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	double BallVX = 0;
-	double BallVY = 0;
-	int BallX = 399;
-	int BallY = 0;
-	int BallRed = 255;
-	int BallGreen = 255;
-	int BallBlue = 255;
-	const int LeftPlayerX = 100;
-	int LeftPlayerY = 299;
-	const int RightPlayerX = 700;
-	int RightPlayerY = 299;
-	int LeftPlayerScore = 0;
-	int RightPlayerScore = 0;
 	bool NewRound = true;
 	bool IsStarted = false;
 	bool FirstTime = true;
+	Paddle Left;
+	Paddle Right;
+	Ball Pong;
+	
+	
 	
 	/********************************/
 };

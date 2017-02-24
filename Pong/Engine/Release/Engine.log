@@ -1,13 +1,25 @@
 ﻿  Game.cpp
   Main.cpp
   MainWindow.cpp
-Game.cpp(1888): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Game.cpp(1889): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Game.cpp(1894): error C3861: 'time': identifier not found
-Game.cpp(1897): error C3861: 'time': identifier not found
-Game.cpp(1981): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-Game.cpp(1988): error C3861: 'time': identifier not found
-Game.cpp(1990): error C3861: 'time': identifier not found
-Game.cpp(2002): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-Game.cpp(2009): error C3861: 'time': identifier not found
-Game.cpp(2014): error C3861: 'time': identifier not found
+  Paddle.cpp
+Game.cpp(1879): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Game.cpp(1880): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Game.cpp(1885): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(1888): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(1972): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Game.cpp(1979): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(1981): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(1993): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Game.cpp(2000): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(2005): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gebruiker\documents\programming\c++ projects\pong\engine\ChiliWin.h(24): warning C4005: '_WIN32_WINNT': macro redefinition (compiling source file Paddle.cpp)
+  C:\Program Files (x86)\Windows Kits\8.1\Include\shared\sdkddkver.h(200): note: see previous definition of '_WIN32_WINNT' (compiling source file Paddle.cpp)
+c:\users\gebruiker\documents\programming\c++ projects\pong\engine\ChiliWin.h(64): warning C4005: 'STRICT': macro redefinition (compiling source file Paddle.cpp)
+  C:\Program Files (x86)\Windows Kits\8.1\Include\shared\minwindef.h(23): note: see previous definition of 'STRICT' (compiling source file Paddle.cpp)
+  Generating code
+  3 of 641 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Engine.vcxproj -> C:\Users\Gebruiker\Documents\Programming\C++ Projects\Pong\Release\Engine.exe
+  Engine.vcxproj -> C:\Users\Gebruiker\Documents\Programming\C++ Projects\Pong\Release\Engine.pdb (Full PDB)

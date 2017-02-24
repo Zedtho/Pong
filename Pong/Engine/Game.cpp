@@ -20,6 +20,7 @@
 ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include <time.h>
 
 
 
@@ -30,6 +31,8 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd)
 {
+	Left.x = 100;
+	Right.x = 700;
 }
 ///Calls the game functions
 void Game::Go()
@@ -42,12 +45,12 @@ void Game::Go()
 ///Calls to update the model
 void Game::UpdateModel()
 {
-	
+		
 		///Moves player paddles
 		MovePaddle();
 		///Checks if player paddles are inside the given parameters.
-		LeftPlayerY = WallInsideBorder(LeftPlayerY);
-		RightPlayerY = WallInsideBorder(RightPlayerY);
+		Left.WallInsideBorder();
+		Right.WallInsideBorder();
 		///Reactions of Pongball
 		PongBallPhysics();
 		IsGoal();
@@ -58,9 +61,9 @@ void Game::ComposeFrame()
 {
 	
 	
-		DrawBall(BallX, BallY, BallRed, BallGreen, BallBlue);
-		DrawWall(LeftPlayerX, LeftPlayerY);
-		DrawWall(RightPlayerX, RightPlayerY);
+		DrawBall(Pong.x, Pong.y, Pong.red, Pong.green, Pong.blue);
+		DrawWall(Left.x, Left.y);
+		DrawWall(Right.x, Right.y);
 		DrawThePixelatedWall();
 		DrawScoreboard();
 	
@@ -120,7 +123,7 @@ void Game::DrawBall(int BallX, int BallY, int BallRed, int BallGreen, int BallBl
 ///Draws the walls for the players (100 pixels tall)
 void Game::DrawWall(int XCoordinate, int YCoordinate)
 {
-	if (XCoordinate == LeftPlayerX)
+	if (XCoordinate == Left.x)
 	{
 		for (int i = -50; i <= 50; ++i)
 		{
@@ -131,7 +134,7 @@ void Game::DrawWall(int XCoordinate, int YCoordinate)
 		}
 	}
 
-	if (XCoordinate == RightPlayerX)
+	if (XCoordinate == Right.x)
 	{
 		for (int i = -50; i <= 50; ++i)
 		{
@@ -153,10 +156,10 @@ void Game::DrawThePixelatedWall()
 ///Draws the scoreboard.
 void Game::DrawScoreboard()
 {
-	if (true) {
+	{
 		int x = 320;
 		int y = 6;
-		switch (LeftPlayerScore) {
+		switch (Left.Score) {
 		case 0:
 			for (int i = 6; i <= 50; ++i)
 			{
@@ -1014,10 +1017,11 @@ void Game::DrawScoreboard()
 
 		}
 	}
-	if (true) {
+
+	{
 		int x = 478;
 		int y = 6;
-		switch (RightPlayerScore) {
+		switch (Right.Score) {
 		case 0:
 			for (int i = 6; i <= 50; ++i)
 			{
@@ -1869,51 +1873,38 @@ void Game::DrawScoreboard()
 		}
 	}
 }
-///Checks if Walls are inside
-int Game::WallInsideBorder(int YCoordinate)
-{
-	if (YCoordinate + 50 >= gfx.ScreenHeight)
-	{
-		return gfx.ScreenHeight - 51;
-	}
-	if (YCoordinate - 50 < 0)
-	{
-		return 51;
-	}
-	return YCoordinate;
-}
 ///Pong Ball physics :D
 void Game::PongBallPhysics()
 {
-	BallX = BallX + BallVX;
-	BallY = BallY + BallVY;
+	Pong.x = Pong.x + Pong.vx;
+	Pong.y = Pong.y + Pong.vy;
 	///Sets initial VX and VY
 	
 	if (NewRound)
 	{
 		srand(time(NULL));
-		BallY = rand() % 599;
-		BallVX = rand() % 6 + 5;
+		Pong.y = rand() % 599;
+		Pong.vx = rand() % 6 + 5;
 		srand(time(NULL));
-		BallVY = rand() % 9;
+		Pong.vy = rand() % 9;
 		int Random = rand() % 2;
 		if (Random == 1)
 		{
-			BallVX = -BallVX;
+			Pong.vx = -Pong.vx;
 		}
 		NewRound = false;
 	}
 	IsTouchingWall();
 	/// Touching top or bottom?
-	if (BallY - 3 < 0)
+	if (Pong.y - 3 < 0)
 	{
 		DoBounceCalculation();
-		BallY = 3;
+		Pong.y = 3;
 	}
-	if (BallY + 3 > 599)
+	if (Pong.y + 3 > 599)
 	{
 		DoBounceCalculation();
-		BallY = 595;
+		Pong.y = 595;
 	}
 	///Touching a wall?
 	/// ERROR, BallVX goes PAST LeftPlayerX/RightPlayerX!
@@ -1922,7 +1913,7 @@ void Game::PongBallPhysics()
 ///Makes the angle be the same as when it hit the wall/boundary.Looked at and is working
 void Game::DoBounceCalculation()
 {
-	BallVY = -BallVY;
+	Pong.vy = -Pong.vy;
 } 
 ///Swaps two variables, looked at and should be working
 void Game::Swap(int &x, int &y)
@@ -1934,16 +1925,16 @@ void Game::Swap(int &x, int &y)
 ///Checks if ball is in opponent's goal, looked at and is working
 void Game::IsGoal()
 {
-	if (BallX - 3 <= 0)
+	if (Pong.x - 3 <= 0)
 	{
-		RightPlayerScore++;
-		BallX = 399;
+		Right.Score++;
+		Pong.x = 399;
 		FirstTime = true;
 	}
-	if (BallX + 3 >= gfx.ScreenWidth)
+	if (Pong.x + 3 >= gfx.ScreenWidth)
 	{
-		LeftPlayerScore++;
-		BallX = 399;
+		Left.Score++;
+		Pong.x = 399;
 		FirstTime = true;
 	}
 }
@@ -1952,19 +1943,19 @@ void Game::MovePaddle()
 {
 	if (wnd.kbd.KeyIsPressed(0x57))
 	{
-		LeftPlayerY = LeftPlayerY - 10;
+		Left.y = Left.y - 10;
 	}
 	if (wnd.kbd.KeyIsPressed(0x53))
 	{
-		LeftPlayerY = LeftPlayerY + 10;
+		Left.y = Left.y + 10;
 	}
-	if (wnd.kbd.KeyIsPressed(0x49))
+	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		RightPlayerY = RightPlayerY - 10;
+		Right.y = Right.y - 10;
 	}
-	if (wnd.kbd.KeyIsPressed(0x4B))
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		RightPlayerY = RightPlayerY + 10;
+		Right.y = Right.y + 10;
 	}
 }
 ///Checks if Ball is touching Player paddles and changes velocity accordingly, works
@@ -1974,46 +1965,46 @@ void Game::IsTouchingWall()
 	// The problem is, that VX skips the pixels the wall's at, (when they're set to anything higher than 1)
 	// So that it jumps over the paddle.
 	///Handles Leftplayer paddle
-	if (BallX - LeftPlayerX - 3 < -BallVX && !(BallX - LeftPlayerX - 3 < 0))
+	if (Pong.x - Left.x - 3 < -Pong.vx && !(Pong.x - Left.x - 3 < 0))
 	{
-		int XGap = BallX - LeftPlayerX - 3;
-		double BallVelocity = BallVY / BallVX;
+		int XGap = Pong.x - Left.x - 3;
+		double BallVelocity = Pong.vy / Pong.vx;
 		int YGap = XGap*BallVelocity;
-		int TheoreticalX = LeftPlayerX;
-		int TheoreticalY = BallY - YGap;
-		if (TheoreticalX == LeftPlayerX && TheoreticalY - 3 <= LeftPlayerY + 50 && TheoreticalY + 3 >= LeftPlayerY - 50)
+		int TheoreticalX = Left.x;
+		int TheoreticalY = Pong.y - YGap;
+		if (TheoreticalX == Left.x && TheoreticalY - 3 <= Left.y + 50 && TheoreticalY + 3 >= Left.y - 50)
 		{
-			BallX = 104;
-			BallY = TheoreticalY - 3;
+			Pong.x = 104;
+			Pong.y = TheoreticalY - 3;
 			srand(time(NULL));
-			BallVY = rand() % 9;
+			Pong.vy = rand() % 9;
 			srand(time(NULL));
 			int Random = rand() % 2;
 			if (Random == 1)
-				BallVY = -BallVY;
-			BallVX = rand() % 6 + 5;
+				Pong.vy = -Pong.vy;
+			Pong.vx = rand() % 6 + 5;
 		}
 	}
 	///Handles rightplayer paddle
-	if (RightPlayerX - BallX - 3 < BallVX && !(RightPlayerX - BallX - 3 < 0))
+	if (Right.x - Pong.x - 3 < Pong.vx && !(Right.x - Pong.x - 3 < 0))
 	{
-		int XGap = RightPlayerX - BallX - 3;
-		double BallVelocity = BallVY / BallVX;
+		int XGap = Right.x - Pong.x - 3;
+		double BallVelocity = Pong.vy / Pong.vx;
 		int YGap = XGap*BallVelocity;
-		int TheoreticalX = RightPlayerX;
-		int TheoreticalY = BallY + YGap;
-		if (TheoreticalX == RightPlayerX && TheoreticalY - 3 <= RightPlayerY + 50 && TheoreticalY + 3 >= RightPlayerY - 50)																																																																																																																																					///Hi
+		int TheoreticalX = Right.x;
+		int TheoreticalY = Pong.y + YGap;
+		if (TheoreticalX == Right.x && TheoreticalY - 3 <= Right.y + 50 && TheoreticalY + 3 >= Right.y - 50)																																																																																																																																					///Hi
 		{
-			BallX = 696;
-			BallY = TheoreticalY;
+			Pong.x = 696;
+			Pong.y = TheoreticalY;
 			srand(time(NULL));
-			BallVY = rand() % 9;
+			Pong.vy = rand() % 9;
 			int Random = rand() % 2;
 			if (Random == 1)
-				BallVY = -BallVY;
+				Pong.vy = -Pong.vy;
 			srand(time(NULL));
-			BallVX = rand() % 6 + 5;
-			BallVX = -BallVX;
+			Pong.vx = rand() % 6 + 5;
+			Pong.vx = -Pong.vx;
 		}
 	}
 }

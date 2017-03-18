@@ -1,23 +1,22 @@
 ﻿  Game.cpp
-  Main.cpp
-  MainWindow.cpp
-  Paddle.cpp
-Game.cpp(1879): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Game.cpp(1880): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-Game.cpp(1885): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-Game.cpp(1888): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-Game.cpp(1972): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-Game.cpp(1979): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-Game.cpp(1981): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-Game.cpp(1993): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-Game.cpp(2000): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-Game.cpp(2005): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\gebruiker\documents\programming\c++ projects\pong\engine\ChiliWin.h(24): warning C4005: '_WIN32_WINNT': macro redefinition (compiling source file Paddle.cpp)
-  C:\Program Files (x86)\Windows Kits\8.1\Include\shared\sdkddkver.h(200): note: see previous definition of '_WIN32_WINNT' (compiling source file Paddle.cpp)
-c:\users\gebruiker\documents\programming\c++ projects\pong\engine\ChiliWin.h(64): warning C4005: 'STRICT': macro redefinition (compiling source file Paddle.cpp)
-  C:\Program Files (x86)\Windows Kits\8.1\Include\shared\minwindef.h(23): note: see previous definition of 'STRICT' (compiling source file Paddle.cpp)
+Game.cpp(7126): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Game.cpp(7127): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Game.cpp(7132): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(7135): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(7234): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Game.cpp(7241): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(7243): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(7254): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Game.cpp(7261): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(7266): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(7278): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Game.cpp(7285): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(7287): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(7298): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Game.cpp(7305): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Game.cpp(7310): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
-  3 of 641 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+  0 of 646 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

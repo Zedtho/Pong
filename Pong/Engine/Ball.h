@@ -4,7 +4,7 @@ class Ball
 {
 public:
 	int x = 399;
-	int y;
+	int y = 299;
 	double vx;
 	double vy;
 	int red = 255;

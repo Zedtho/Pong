@@ -4,6 +4,8 @@
 #include "Game.h"
 #include "MainWindow.h"
 
+
+
 void Paddle::WallInsideBorder()
 {
 	if (y + 50 >= Graphics::ScreenHeight)

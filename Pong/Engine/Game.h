@@ -47,22 +47,31 @@ private:
 	void Swap(int& x, int& y);
 	void IsGoal();
 	void MovePaddle();
+	void MoveSinglePaddle();
 	void IsTouchingWall();
+	void DrawTitleScreen();
+	void DrawTitleSingle();
+	void DrawTitleMulti();
+	void MoveAIPaddle();
 
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
-	/*  User Variables              */
-	bool NewRound = true;
+	/*  User Variables    */
 	bool IsStarted = false;
+	bool NewRound = true;
 	bool FirstTime = true;
+	bool SingleSelected = true;
+	bool MultiSelected = false;
+	bool SingleChosen = false;
+	bool MultiChosen = false;
 	Paddle Left;
 	Paddle Right;
+	Paddle Single;
+	Paddle SingleAI;
 	Ball Pong;
-	
-	
-	
+	bool WasPressed = false;
 	/********************************/
 };
